@@ -1,22 +1,19 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <string>
 #include <fstream>
 using namespace std;
 ifstream in_file("in.txt");
 ofstream out_file("out.txt");
-
-
-
 void main()
 {
 	setlocale(LC_ALL, "Rus");
 	int number;
 start:
-	cout << "Ââåäèòå íîìåð çàäàíèÿ: ";
+	cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð¾Ð¼ÐµÑ€ Ð·Ð°Ð´Ð°Ð½Ð¸Ñ: ";
 	cin >> number;
 	if (number == 1)
 	{
-		cout << "Äàí òåêñòîâûé ôàéë. Óäàëèòü èç íåãî ïîñëåäíþþ ñòðîêó. Ðåçóëüòàò çàïèñàòü â äðóãîé ôàéë." << endl;
+		cout << "Ð”Ð°Ð½ Ñ‚ÐµÐºÑÑ‚Ð¾Ð²Ñ‹Ð¹ Ñ„Ð°Ð¹Ð». Ð£Ð´Ð°Ð»Ð¸Ñ‚ÑŒ Ð¸Ð· Ð½ÐµÐ³Ð¾ Ð¿Ð¾ÑÐ»ÐµÐ´Ð½ÑŽÑŽ ÑÑ‚Ñ€Ð¾ÐºÑƒ. Ð ÐµÐ·ÑƒÐ»ÑŒÑ‚Ð°Ñ‚ Ð·Ð°Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð² Ð´Ñ€ÑƒÐ³Ð¾Ð¹ Ñ„Ð°Ð¹Ð»." << endl;
 		const int len = 30, strings = 3;
 		char str[len][strings];
 		for (int i = 0; i < strings - 1; i++)
@@ -24,38 +21,34 @@ start:
 			in_file.getline(str[i], len - 1);
 			out_file << str[i] << endl;
 		}
-
 	}
-
 	else if (number == 2)
 	{
-		cout << "Äàí òåêñòîâûé ôàéë. Íàéòè äëèíó ñàìîé äëèííîé ñòðîêè." << endl;
-		char* str;
-		str = new char;
-		char max = str[0];
+		cout << "Ð”Ð°Ð½ Ñ‚ÐµÐºÑÑ‚Ð¾Ð²Ñ‹Ð¹ Ñ„Ð°Ð¹Ð». ÐÐ°Ð¹Ñ‚Ð¸ Ð´Ð»Ð¸Ð½Ñƒ ÑÐ°Ð¼Ð¾Ð¹ Ð´Ð»Ð¸Ð½Ð½Ð¾Ð¹ ÑÑ‚Ñ€Ð¾ÐºÐ¸." << endl;
+		int k = 0;
+		int max = 0;
+		char str[100];
 		while (!in_file.eof())
 		{
-			for (int i = 0; i < 20; i++)
+			k = 0;
+			in_file.getline(str, 100);
+
+			for (int i = 0; str[i] != '\0'; i++)
 			{
-				in_file.getline(str, 20);
-				out_file << str << endl;
-				if (max > str[i])
-					max = str[i];					
-			}	
-			
+				k++;
+			}
+			if (max < k) max = k;
 		}
 		cout << max << endl;
-		
-		
 	}
 	else if (number == 3)
 	{
-		cout << "Äàí òåêñòîâûé ôàéë. Ïîäñ÷èòàòü êîëè÷åñòâî ñëîâ, íà÷èíàþùèõñÿ ñ ñèìâîëà, êîòîðûé çàäà¸ò ïîëüçîâàòåëü." << endl;
+		cout << "Ð”Ð°Ð½ Ñ‚ÐµÐºÑÑ‚Ð¾Ð²Ñ‹Ð¹ Ñ„Ð°Ð¹Ð». ÐŸÐ¾Ð´ÑÑ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»Ð¾Ð², Ð½Ð°Ñ‡Ð¸Ð½Ð°ÑŽÑ‰Ð¸Ñ…ÑÑ Ñ ÑÐ¸Ð¼Ð²Ð¾Ð»Ð°, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ð¹ Ð·Ð°Ð´Ð°Ñ‘Ñ‚ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÑŒ." << endl;
 		char name[100];		
 		char * p, *context;
 		int k = 0;
 		char choice;
-		cout << "Ââåäèòå íâ÷àëüíóþ áóêâó: ";
+		cout << "Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð½Ð²Ñ‡Ð°Ð»ÑŒÐ½ÑƒÑŽ Ð±ÑƒÐºÐ²Ñƒ: ";
 		cin >> choice;
 		while (!in_file.eof())
 		{			
@@ -68,8 +61,9 @@ start:
 				p = strtok_s(context, " ", &context);
 			}			
 		}
-		cout << "Êîëè÷åñòâî ñëîâ íà÷èíàþùèõñÿ ñ áóêâû "<<choice<<" ðàâíî "<< k << endl;
+		cout << "ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ ÑÐ»Ð¾Ð² Ð½Ð°Ñ‡Ð¸Ð½Ð°ÑŽÑ‰Ð¸Ñ…ÑÑ Ñ Ð±ÑƒÐºÐ²Ñ‹ "<<choice<<" Ñ€Ð°Ð²Ð½Ð¾ "<< k << endl;
 	}
+	
 	goto start;
 	system("pause");
 }
